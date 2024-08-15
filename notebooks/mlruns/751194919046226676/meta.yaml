@@ -1,0 +1,6 @@
+artifact_location: file:///c:/Users/ZADO/Documents/Kampus/TA/Forecast%20by%20Sentiment/stock_forecast_sentiment/notebooks/mlruns/751194919046226676
+creation_time: 1723651080584
+experiment_id: '751194919046226676'
+last_update_time: 1723651080584
+lifecycle_stage: active
+name: LSTM

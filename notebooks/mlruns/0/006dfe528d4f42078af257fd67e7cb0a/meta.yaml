@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/ZADO/Documents/Kampus/TA/Forecast%20by%20Sentiment/stock_forecast_sentiment/notebooks/mlruns/0/006dfe528d4f42078af257fd67e7cb0a/artifacts
+end_time: 1723650580543
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 006dfe528d4f42078af257fd67e7cb0a
+run_name: able-crow-453
+run_uuid: 006dfe528d4f42078af257fd67e7cb0a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1723650580225
+status: 3
+tags: []
+user_id: ZADO

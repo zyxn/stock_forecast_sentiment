@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/134747498245406227/db608065f7ff4a5fb0c18fdb0652a3fd/artifacts
+end_time: 1723651987543
+entry_point_name: ''
+experiment_id: '134747498245406227'
+lifecycle_stage: active
+run_id: db608065f7ff4a5fb0c18fdb0652a3fd
+run_name: unequaled-midge-439
+run_uuid: db608065f7ff4a5fb0c18fdb0652a3fd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1723651878718
+status: 3
+tags: []
+user_id: ZADO

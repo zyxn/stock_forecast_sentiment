@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/ZADO/Documents/Kampus/TA/Forecast%20by%20Sentiment/stock_forecast_sentiment/notebooks/mlruns/0/1e4a27ef9071456fade43e0f0e17bb3b/artifacts
+end_time: 1723650352831
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1e4a27ef9071456fade43e0f0e17bb3b
+run_name: dashing-colt-352
+run_uuid: 1e4a27ef9071456fade43e0f0e17bb3b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1723650352703
+status: 4
+tags: []
+user_id: ZADO

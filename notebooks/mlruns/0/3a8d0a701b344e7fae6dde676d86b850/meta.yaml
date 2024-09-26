@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/ZADO/Documents/Kampus/TA/Forecast%20by%20Sentiment/stock_forecast_sentiment/notebooks/mlruns/0/3a8d0a701b344e7fae6dde676d86b850/artifacts
+end_time: 1723650371948
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3a8d0a701b344e7fae6dde676d86b850
+run_name: ambitious-gnu-463
+run_uuid: 3a8d0a701b344e7fae6dde676d86b850
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1723650371869
+status: 3
+tags: []
+user_id: ZADO

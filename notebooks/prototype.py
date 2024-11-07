@@ -67,11 +67,27 @@ class StockPredictionModel:
 
     def reshape_data_lstm(self, scaled_data):
         logging.info("Reshaping data for LSTM model")
+        
+        # Buat batch input 3D untuk LSTM (jumlah sampel, timesteps, fitur)
         data_reshaped = []
-        for i in range(self.timesteps):
-            data_reshaped.append(scaled_data.iloc[:, i*self.features:(i+1)*self.features].values)
-        logging.info("Data reshaped successfully")
-        return np.array(data_reshaped).transpose(1, 0, 2)
+        
+        # Iterasi dengan langkah timesteps agar setiap sampel mengandung urutan data dengan panjang yang sama
+        for i in range(len(scaled_data) - self.timesteps + 1):
+            timestep_data = scaled_data.iloc[i:i + self.timesteps].values  # Ambil timestep data dari `i`
+            data_reshaped.append(timestep_data)
+        
+        # Konversi ke array numpy untuk memastikan kompatibilitas dengan model LSTM
+        data_reshaped = np.array(data_reshaped)
+        
+        logging.info(f"Data reshaped successfully into shape {data_reshaped.shape}")
+        return data_reshaped
+    
+    def prepare_y_for_lstm(self, y):
+        """
+        Adjust y to match the reduced length after creating X with timesteps.
+        """
+        return y[self.timesteps - 1:].values
+
 
     def build_model(self, input_shape=None):
         logging.info(f"Building model of type: {self.model_type}")
@@ -85,9 +101,10 @@ class StockPredictionModel:
             ])
             self.model.compile(optimizer='adam', loss="mse", metrics=["mse"])
         elif self.model_type == "SVR":
-            self.model = SVR(kernel='rbf', C=100, gamma=0.1, epsilon=0.1)
+            params =  {'C': 10, 'epsilon': 0.001, 'gamma': 'scale', 'kernel': 'linear'}
+            self.model = SVR(**params)
         elif self.model_type == "XGBoost":
-            self.model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, max_depth=3, learning_rate=0.1)
+            self.model = xgb.XGBRegressor(objective='reg:squarederror', reg_lambda=0.002, gamma=0.5, max_depth=1, n_estimators=699, learning_rate=0.01, random_state=42)
         logging.info("Model built successfully")
         
     def plot_results(self, y_train, y_pred_train, y_val, y_pred_val, train_index, val_index):
@@ -172,6 +189,8 @@ class StockPredictionModel:
         if self.model_type == "LSTM":
             X_train = self.reshape_data_lstm(scaled_train_data[["Open", "Close", "High", "Low"]])
             X_val = self.reshape_data_lstm(scaled_validation_data[["Open", "Close", "High", "Low"]])
+            y_train = self.prepare_y_for_lstm(train_data["Close"])
+            y_val = self.prepare_y_for_lstm(validation_data["Close"])
             input_shape = (X_train.shape[1], self.features)
         else:
             X_train = scaled_train_data[["Open", "Close", "High", "Low"]].values
@@ -212,7 +231,7 @@ if __name__ == "__main__":
     # Parameter model
     timesteps = 10
     features = 4
-    model_type = "XGBoost"  # Options: "LSTM", "SVR", "XGBoost"
+    model_type = "LSTM"  # Options: "LSTM", "SVR", "XGBoost"
     
     # Buat instance dari StockPredictionModel
     model = StockPredictionModel(filepath, timesteps=timesteps, features=features, model_type=model_type)

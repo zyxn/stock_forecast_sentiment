@@ -8,7 +8,7 @@ import pandas as pd
 from tqdm import tqdm
 import asyncio
 
-os.environ["OPENAI_API_KEY"] = "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"
+# os.environ["OPENAI_API_KEY"] = "api"
 
 
 
